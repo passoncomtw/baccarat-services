@@ -1,0 +1,293 @@
+definitions:
+  api.AuthRequestDto:
+    properties:
+      account:
+        example: test001
+        type: string
+      password:
+        example: a12345678
+        type: string
+    required:
+    - account
+    - password
+    type: object
+  api.AuthResponseDto:
+    properties:
+      account:
+        $ref: '#/definitions/api.UserResponseDto'
+      token:
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImFjY291bnQiOiJ0ZXN0MDAxIiwiYXVkIjoidGVzdDAwMSIsImV4cCI6MTcxMjA2NTEzMiwianRpIjoiMTcxMjA2MzEzMiIsImlhdCI6MTcxMjA2MzEzMiwiaXNzIjoiZ2luSldUIiwibmJmIjoxNzEyMDYzMTMzLCJzdWIiOiJ0ZXN0MDAxIn0.RnjzI0kGPu1klhoyjkvXXxlf8gI_7469qf52b9XBajM
+        type: string
+    required:
+    - account
+    - token
+    type: object
+  api.UserResponseDto:
+    properties:
+      account:
+        example: test001
+        type: string
+      amount:
+        type: integer
+      createdAt:
+        example: "2024-03-30 18:00:00"
+        type: string
+      id:
+        type: integer
+      name:
+        example: test001
+        type: string
+    required:
+    - id
+    type: object
+  apiv1.UpdateUserRequestDto:
+    properties:
+      name:
+        type: string
+    type: object
+  apiv1.UserResponseDto:
+    properties:
+      user:
+        $ref: '#/definitions/api.UserResponseDto'
+    type: object
+  httputil.HTTP404Error:
+    properties:
+      code:
+        example: 404
+        type: integer
+      message:
+        example: route not found
+        type: string
+    type: object
+  httputil.HTTP500Error:
+    properties:
+      code:
+        example: 500
+        type: integer
+      message:
+        example: Internal Server Error
+        type: string
+    type: object
+  httputil.HTTPError:
+    properties:
+      code:
+        example: 400
+        type: integer
+      message:
+        example: status bad request
+        type: string
+    type: object
+  httputil.HTTPUnauthorizedError:
+    properties:
+      message:
+        example: Unauthorized
+        type: string
+    type: object
+  models.BaseUserDto:
+    properties:
+      account:
+        example: test001
+        type: string
+      amount:
+        type: integer
+      name:
+        type: string
+      password:
+        example: a12345678
+        type: string
+    required:
+    - account
+    - amount
+    - name
+    - password
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+info:
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+paths:
+  /api/v1/users/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete an user
+      parameters:
+      - description: User ID
+        format: int64
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+      security:
+      - BearerAuth: []
+      summary: User
+      tags:
+      - User
+    get:
+      consumes:
+      - application/json
+      description: get an user account
+      parameters:
+      - description: User ID
+        format: int64
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/apiv1.UserResponseDto'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/httputil.HTTP404Error'
+      security:
+      - BearerAuth: []
+      summary: User
+      tags:
+      - User
+    put:
+      consumes:
+      - application/json
+      description: update an user name
+      parameters:
+      - description: User ID
+        format: int64
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update User Request Body
+        in: body
+        name: registe
+        required: true
+        schema:
+          $ref: '#/definitions/apiv1.UpdateUserRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/apiv1.UserResponseDto'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/httputil.HTTP404Error'
+      security:
+      - BearerAuth: []
+      summary: User
+      tags:
+      - User
+  /auth:
+    post:
+      consumes:
+      - application/json
+      description: get auth token
+      parameters:
+      - description: Login Body
+        in: body
+        name: login
+        required: true
+        schema:
+          $ref: '#/definitions/api.AuthRequestDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.AuthResponseDto'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/httputil.HTTPUnauthorizedError'
+      summary: auth
+      tags:
+      - Auth
+  /home:
+    get:
+      consumes:
+      - application/json
+      description: home
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: home
+      tags:
+      - example
+  /resource:
+    get:
+      consumes:
+      - application/json
+      description: do ping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: ping
+      tags:
+      - example
+  /users:
+    post:
+      consumes:
+      - application/json
+      description: registe an user account
+      parameters:
+      - description: Registe Body
+        in: body
+        name: registe
+        required: true
+        schema:
+          $ref: '#/definitions/models.BaseUserDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/apiv1.UserResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/httputil.HTTP404Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.HTTP500Error'
+      summary: User
+      tags:
+      - User
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
