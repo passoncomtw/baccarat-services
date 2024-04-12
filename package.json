@@ -3,11 +3,13 @@
   "private": true,
   "workspaces": [
     "pkg/baccarat-managment-center",
-    "pkg/baccarat-server"
+    "pkg/baccarat-server",
+    "pkg/baccarat-web"
   ],
   "scripts": {
     "start:scc-state": "lerna run start --stream --scope=baccarat-managment-center",
-    "start:baccarat-server": "lerna run start --stream --scope=baccarat-server"
+    "start:baccarat-server": "lerna run start --stream --scope=baccarat-server",
+    "start:baccarat-web": "lerna run start --stream --scope=baccarat-web"
   },
   "dependencies": {
     "eslint-plugin-prettier": "^5.1.3"
