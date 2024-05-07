@@ -42,6 +42,7 @@ func init() {
 // @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
 // @externalDocs.description  OpenAPI
 // @externalDocs.url          https://swagger.io/resources/open-api/
+
 func main() {
 	routersInit := controllers.InitRouter()
 	port := viper.GetString(`app.port`)
