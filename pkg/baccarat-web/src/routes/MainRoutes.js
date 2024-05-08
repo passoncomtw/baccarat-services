@@ -7,6 +7,7 @@ import ProtectedRoute from 'components/ProtectedRoute';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('screens/DashboardScreen')));
+const PokerScreen = Loadable(lazy(() => import('screens/PokerScreen')));
 
 // utilities routing
 const UtilsTypography = Loadable(lazy(() => import('screens/UtilsTypographyScreen')));
@@ -33,7 +34,16 @@ const MainRoutes = {
             children: [
                 {
                     path: 'default',
-                    element: <ProtectedRoute children={<DashboardDefault />} />
+                    element: <ProtectedRoute children={<PokerScreen />} />
+                }
+            ]
+        },
+        {
+            path: 'poker',
+            children: [
+                {
+                    path: 'poker',
+                    element: <ProtectedRoute children={<PokerScreen />} />
                 }
             ]
         },

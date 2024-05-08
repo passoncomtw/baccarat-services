@@ -101,7 +101,6 @@ function colorText(message, color) {
   return message;
 }
 
-console.log("🚀 ~ SCC_STATE_SERVER_HOST:", SCC_STATE_SERVER_HOST)
 if (SCC_STATE_SERVER_HOST) {
   // Setup broker client to connect to SCC.
   let sccClient = sccBrokerClient.attach(agServer.brokerEngine, {
@@ -125,7 +124,6 @@ if (SCC_STATE_SERVER_HOST) {
     (async () => {
       for await (let { error } of sccClient.listener('error')) {
         error.name = 'SCCError';
-        console.log("🚀 ~ forawait ~ error:", error)
       }
     })();
   }
