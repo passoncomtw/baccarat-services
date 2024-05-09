@@ -34,18 +34,13 @@ const MainRoutes = {
             children: [
                 {
                     path: 'default',
-                    element: <ProtectedRoute children={<PokerScreen />} />
+                    element: <ProtectedRoute children={<DashboardDefault />} />
                 }
             ]
         },
         {
             path: 'poker',
-            children: [
-                {
-                    path: 'poker',
-                    element: <ProtectedRoute children={<PokerScreen />} />
-                }
-            ]
+            element: <ProtectedRoute children={<PokerScreen />} />,
         },
         {
             path: 'utils',

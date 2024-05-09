@@ -581,6 +581,9 @@ class PokerScreen extends Component {
             />
           </Grid>
         </Grid>
+
+        <img style={{width: 50, height: 50}} src={require("./assets/dollar.png")} />
+        <img style={{width: 50, height: 50}} src={'/assets/chip.svg'} />
         <Spinner />
         <WinScreen />
       </div>

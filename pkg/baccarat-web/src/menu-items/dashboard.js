@@ -18,7 +18,15 @@ const dashboard = {
             url: '/dashboard/default',
             icon: icons.IconDashboard,
             breadcrumbs: false
-        }
+        },
+        {
+            id: 'poker',
+            title: 'Poker',
+            type: 'item',
+            url: '/poker',
+            icon: icons.IconDashboard,
+            breadcrumbs: false
+        }        
     ]
 };
 
