@@ -37,7 +37,7 @@ jobs:
 
       # Assign environment variables used in subsequent steps
       - name: Env variable assignment
-        run: echo "image_repository_name=$(echo $GITHUB_WORKFLOW | sed 's/-build$//')" >> $GITHUB_ENV
+        run: echo "image_repository_name=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
       # TAG_NAME defaults to 'latest' if not a release or manual deployment
       - name: Assign version
         run: |
@@ -64,4 +64,4 @@ jobs:
           context: .
           file: ./pkg/baccarat-managment-center/Dockerfile
           push: true
-          tags: ghcr.io/${{ env.image_repository_name }}:${{ env.TAG_NAME }}
+          tags: ghcr.io/${{ env.image_repository_name }}:${{ github.sha }}
