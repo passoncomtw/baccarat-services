@@ -1,0 +1,66 @@
+name: Release
+permissions:
+  packages: write
+  contents: write
+on:
+  # Triggered when code is pushed to the repository,
+  # specifically when changes occur within pkg/baccarat-managment-center directory.
+  push:
+    paths:
+      - "pkg/baccarat-managment-center/**"
+  # Triggered when a new GitHub Release is created and published.
+  release:
+    types: [published]
+  # Manual trigger for rollback to specific release or redeploy latest
+  workflow_dispatch:
+    inputs:
+      version:
+        default: latest
+        description: Tag you want to release.
+        required: true
+
+jobs:
+  push_to_registry:
+    runs-on: ubuntu-22.04
+    if: ${{ github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.version == 'latest') }}
+    steps:
+      # Checkout latest or specific tag
+      - name: checkout
+        if: ${{ github.event.inputs.version == '' || github.event.inputs.version == 'latest' }}
+        uses: actions/checkout@v3
+      - name: checkout tag
+        if: ${{ github.event.inputs.version != '' && github.event.inputs.version != 'latest' }}
+        uses: actions/checkout@v3
+        with:
+          ref: refs/tags/${{ github.event.inputs.version }}
+
+      # Assign environment variables used in subsequent steps
+      - name: Env variable assignment
+        run: echo "image_repository_name=$(echo $GITHUB_WORKFLOW | sed 's/-build.yaml$//')" >> $GITHUB_ENV
+      # TAG_NAME defaults to 'latest' if not a release or manual deployment
+      - name: Assign version
+        run: |
+          echo "TAG_NAME=latest" >> $GITHUB_ENV
+          if [ "${{ github.event.release.tag_name }}" != "" ]; then
+            echo "TAG_NAME=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+          fi;
+          if [ "${{ github.event.inputs.version }}" != "" ]; then
+            echo "TAG_NAME=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+          fi;
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Build and push new docker image, skip for manual redeploy other than 'latest'
+      - name: Build and push Docker images
+        if: ${{ github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.version == 'latest') }}
+        uses: docker/build-push-action@v3
+        with:
+          file: Dockerfile
+          context: pkg/baccarat-managment-center
+          push: true
+          tags: ghcr.io/${{ env.image_repository_name }}:${{ env.TAG_NAME }}

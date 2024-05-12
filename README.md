@@ -18,9 +18,32 @@ go version go1.21.4
 
 # Generator Swagger
 
+1. install swagger first
+
+```go
+go install github.com/swaggo/swag/cmd/swag@latest
+# make sure change PATH to include in "/user/{yourname}/go/bin" in  .zshrc or .bash_profile
+
+# source .zshrc or .bash_profile
+source ~/.zshrc
+```
+
 ```
   $ swag init -g main.go -o docs --parseDependency --parseInternal
 ```
+
+# 部署參考
+
+編譯程式碼結果主要分成兩大類,編譯後產生執行檔打包上傳,以及編譯後把執行打成 image.
+部署過程會依據打包方式, 如果是打包執行檔就要把執行檔放到對應機器跑起來(如果是 vm 就用 ssh,如果是雲端容器可以透過專屬套件),同理也可以放到 image , 跑起來的方式一班可以用指令帶參數執行或者帶腳本執行,如果是 image 可以把 docker-compose.yml 放到指定機器然後執行.
+
+本次 CICD 統一採用打包成 image 然後 ssh 到機器的部署模式,會透過把 docker-compose.yml scp 複製過去的方式跑起來.
+![alt text](image.png)
+
+1. https://docs.servicestack.net/ssh-docker-compose-deploment#docker-compose.yml
+2. https://jiangshuuu.com/docs/CICD/github-action-deploy-cd/
+3. https://docs.github.com/zh/actions/learn-github-actions/understanding-github-actions 這邊討論基本組成 of github action
+4. https://github.com/actions/starter-workflows/blob/main/deployments/azure-webapps-java-jar-gradle.yml 官網示範部署
 
 # 參考資料
 
