@@ -24,7 +24,6 @@ on:
 jobs:
   push_to_registry:
     runs-on: ubuntu-22.04
-    if: ${{ github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.version == 'latest') }}
     steps:
       # Checkout latest or specific tag
       - name: checkout
