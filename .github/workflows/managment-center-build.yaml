@@ -8,8 +8,8 @@ on:
   push:
     branches:
       - develop
-    paths:
-      - "pkg/baccarat-managment-center/**"
+    # paths:
+    #   - "pkg/baccarat-managment-center/**"
   # Triggered when a new GitHub Release is created and published.
   release:
     types: [published]
