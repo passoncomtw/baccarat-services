@@ -27,7 +27,7 @@ jobs:
     steps:
       # Checkout latest or specific tag
       - name: checkout
-        if: ${{ github.event.inputs.version == '' || github.event.inputs.version == 'latest' }}
+        # if: ${{ github.event.inputs.version == '' || github.event.inputs.version == 'latest' }}
         uses: actions/checkout@v3
       - name: checkout tag
         if: ${{ github.event.inputs.version != '' && github.event.inputs.version != 'latest' }}
@@ -37,7 +37,7 @@ jobs:
 
       # Assign environment variables used in subsequent steps
       - name: Env variable assignment
-        run: echo "image_repository_name=$(echo $GITHUB_WORKFLOW | sed 's/-build.yaml$//')" >> $GITHUB_ENV
+        run: echo "image_repository_name=$(echo $GITHUB_WORKFLOW | sed 's/-build$//')" >> $GITHUB_ENV
       # TAG_NAME defaults to 'latest' if not a release or manual deployment
       - name: Assign version
         run: |
@@ -61,7 +61,7 @@ jobs:
         # if: ${{ github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.version == 'latest') }}
         uses: docker/build-push-action@v5
         with:
-          context: ./pkg/baccarat-managment-center
-          file: ./Dockerfile
+          context: .
+          file: ./pkg/baccarat-managment-center/Dockerfile
           push: true
           tags: ghcr.io/${{ env.image_repository_name }}:${{ env.TAG_NAME }}
