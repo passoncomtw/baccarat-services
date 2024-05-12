@@ -6,6 +6,8 @@ on:
   # Triggered when code is pushed to the repository,
   # specifically when changes occur within pkg/baccarat-managment-center directory.
   push:
+    branches:
+      - develop
     paths:
       - "pkg/baccarat-managment-center/**"
   # Triggered when a new GitHub Release is created and published.
