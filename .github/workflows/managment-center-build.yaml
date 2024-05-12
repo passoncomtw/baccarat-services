@@ -59,9 +59,9 @@ jobs:
       # Build and push new docker image, skip for manual redeploy other than 'latest'
       - name: Build and push Docker images
         # if: ${{ github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.version == 'latest') }}
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
-          file: Dockerfile
-          context: pkg/baccarat-managment-center
+          context: ./pkg/baccarat-managment-center
+          file: ./Dockerfile
           push: true
           tags: ghcr.io/${{ env.image_repository_name }}:${{ env.TAG_NAME }}
