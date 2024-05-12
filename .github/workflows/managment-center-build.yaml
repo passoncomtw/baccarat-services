@@ -64,4 +64,4 @@ jobs:
           context: .
           file: ./pkg/baccarat-managment-center/Dockerfile
           push: true
-          tags: ghcr.io/passoncomtw/${{ env.image_repository_name }}:${{ github.sha }}
+          tags: ghcr.io/passoncomtw/${{ env.image_repository_name }}:${{ env.TAG_NAME }}
