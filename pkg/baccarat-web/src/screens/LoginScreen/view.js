@@ -1,24 +1,14 @@
-import { Link, Navigate } from "react-router-dom";
-
-// material-ui
-import { useTheme } from "@mui/material/styles";
-import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Navigate } from "react-router-dom";
+import { Divider, Grid, Typography } from "@mui/material";
 
 // project imports
 import AuthWrapper1 from "components/AuthWrapper1";
 import AuthCardWrapper from "components/AuthCardWrapper";
 import AuthLogin from "components/auth-forms/AuthLogin";
-import Logo from "ui-component/Logo";
 import AuthFooter from "ui-component/cards/AuthFooter";
-
-// assets
-
-// ================================|| AUTH3 - LOGIN ||================================ //
+import packageJson from "../../../package.json";
 
 const LoginScreen = (props) => {
-  const theme = useTheme();
-  const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
-
   if (props.isAuth) return <Navigate to="/" replace />;
   return (
     <AuthWrapper1>
@@ -42,43 +32,7 @@ const LoginScreen = (props) => {
                   spacing={2}
                   alignItems="center"
                   justifyContent="center"
-                >
-                  <Grid item sx={{ mb: 3 }}>
-                    <Link to="#">
-                      <Logo />
-                    </Link>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Grid
-                      container
-                      direction={matchDownSM ? "column-reverse" : "row"}
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Grid item>
-                        <Stack
-                          alignItems="center"
-                          justifyContent="center"
-                          spacing={1}
-                        >
-                          <Typography
-                            color={theme.palette.secondary.main}
-                            gutterBottom
-                            variant={matchDownSM ? "h3" : "h2"}
-                          >
-                            Hi, Welcome Back
-                          </Typography>
-                          <Typography
-                            variant="caption"
-                            fontSize="16px"
-                            textAlign={matchDownSM ? "center" : "inherit"}
-                          >
-                            Enter your credentials to continue
-                          </Typography>
-                        </Stack>
-                      </Grid>
-                    </Grid>
-                  </Grid>
+                >                                    
                   <Grid item xs={12}>
                     <AuthLogin />
                   </Grid>
@@ -94,12 +48,10 @@ const LoginScreen = (props) => {
                       xs={12}
                     >
                       <Typography
-                        component={Link}
-                        to="/pages/register/register3"
                         variant="subtitle1"
                         sx={{ textDecoration: "none" }}
                       >
-                        Don&apos;t have an account?
+                        V{packageJson.version}
                       </Typography>
                     </Grid>
                   </Grid>
