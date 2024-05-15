@@ -3,7 +3,6 @@ import "raf/polyfill";
 import React, { Component } from "react";
 import "./Poker.css";
 import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Grid from "@mui/material/Grid";
 import Spinner from "./Spinner";
@@ -11,7 +10,6 @@ import WinScreen from "./WinScreen";
 
 import Card from "./components/cards/Card";
 import HiddenCard from "./components/cards/HiddenCard";
-import { deepOrange, purple, deepPurple } from '@mui/material/colors';
 
 class PokerScreen extends Component {
   render() {
@@ -592,8 +590,8 @@ class PokerScreen extends Component {
           </Grid>
         </Grid>
 
-        <img style={{width: 50, height: 50}} src={require("./assets/dollar.png")} />
-        <img style={{width: 50, height: 50}} src={'/assets/chip.svg'} />
+        <img alt="test1" style={{width: 50, height: 50}} src={require("./assets/dollar.png")} />
+        <img alt="test2" style={{width: 50, height: 50}} src={'/assets/chip.svg'} />
         <Stack direction="row" spacing={2}>
           <Button variant="contained" color="success" style={{color: "#FFFFFF", width: 60, height: 60, borderRadius: 60}}>
             25
