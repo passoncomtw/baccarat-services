@@ -2,16 +2,26 @@ import "raf/polyfill";
 
 import React, { Component } from "react";
 import "./Poker.css";
+import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
 import Grid from "@mui/material/Grid";
 import Spinner from "./Spinner";
 import WinScreen from "./WinScreen";
 
 import Card from "./components/cards/Card";
+import HiddenCard from "./components/cards/HiddenCard";
+import { deepOrange, purple, deepPurple } from '@mui/material/colors';
 
 class PokerScreen extends Component {
   render() {
     return (
       <div>
+        <Grid container>
+          <Grid item xs={1}>
+            <HiddenCard />
+          </Grid>
+        </Grid>
         <Grid container>
           <Grid item xs={1}>
             <Card
@@ -584,6 +594,26 @@ class PokerScreen extends Component {
 
         <img style={{width: 50, height: 50}} src={require("./assets/dollar.png")} />
         <img style={{width: 50, height: 50}} src={'/assets/chip.svg'} />
+        <Stack direction="row" spacing={2}>
+          <Button variant="contained" color="success" style={{color: "#FFFFFF", width: 60, height: 60, borderRadius: 60}}>
+            25
+          </Button>
+          <Button variant="contained" color="warning" style={{color: "#FFFFFF", width: 60, height: 60, borderRadius: 60}}>
+            50
+          </Button>
+          <Button variant="contained" color="error" style={{color: "#FFFFFF", width: 60, height: 60, borderRadius: 60}}>
+            100
+          </Button>
+          <Button variant="contained" color="primary" style={{color: "#FFFFFF", width: 60, height: 60, borderRadius: 60}}>
+            500
+          </Button>
+          <Button variant="contained" color="secondary" style={{color: "#FFFFFF", width: 60, height: 60, borderRadius: 60}}>
+            1000
+          </Button>
+          <Button variant="contained" color="info" style={{color: "#FFFFFF", width: 60, height: 60, borderRadius: 60}}>
+            5000
+          </Button>
+        </Stack>
         <Spinner />
         <WinScreen />
       </div>
