@@ -1,7 +1,6 @@
 import "raf/polyfill";
 
 import React, { Component } from "react";
-import "./Poker.css";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Grid from "@mui/material/Grid";

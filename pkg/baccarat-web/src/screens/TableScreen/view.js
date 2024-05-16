@@ -7,6 +7,9 @@ import Typography from "@mui/material/Typography";
 import LoopIcon from "@mui/icons-material/Loop";
 import EditIcon from "@mui/icons-material/Edit";
 import { deepOrange } from "@mui/material/colors";
+import HiddenCard from "screens/PokerScreen/components/cards/HiddenCard";
+import Chip from "./components/Chip";
+import BettingArea from "./components/BettingArea";
 
 const TableScreen = () => {
   return (
@@ -38,139 +41,57 @@ const TableScreen = () => {
         </Stack>
       </Grid>
       <Grid xs={10} item>
-        <Grid container>
+        <Grid container spacing={1}>
           <Grid item xs={12}>
             <Grid container>
-                <Grid item xs={6} style={{backgroundColor: "red", height: 300}}>
-                    <Stack direction="row" spacing={2}>
-                        <div style={{height: 100, width: 80, backgroundColor: "#CCC"}}></div>
-                        <div>莊</div>
-                        <div style={{height: 100, width: 80, backgroundColor: "#CCC"}}></div>
-                    </Stack>
-                    <Stack direction="row" spacing={2}>
-                        <div style={{height: 100, width: 80, backgroundColor: "#CCC"}}></div>
-                        <div>閒</div>
-                        <div style={{height: 100, width: 80, backgroundColor: "#CCC"}}></div>
-                    </Stack>
-                </Grid>
-                <Grid item xs={3} style={{backgroundColor: "blue", height: 300}}></Grid>
-                <Grid item xs={3} style={{backgroundColor: "grey", height: 300}}></Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container spacing={2}>
-              <Grid
-                item
-                xs={3}
-                style={{
-                  height: 250,
-                  backgroundColor: "#CCCCCC",
-                  margin: "20px",
-                }}
-              >
-                <Typography>(1:0.95)</Typography>
-                <Typography>莊</Typography>
+              <Grid item xs={4} style={{ height: 450 }}>
+                <Stack direction="row" spacing={2} style={{ margin: 10 }}>
+                  <div
+                    style={{ height: 200, width: 160, backgroundColor: "#CCC" }}
+                  ></div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div>莊</div>
+                  </div>
+                  <div
+                    style={{ height: 200, width: 160, backgroundColor: "#CCC" }}
+                  ></div>
+                </Stack>
+                <Stack direction="row" spacing={2} style={{ margin: 10 }}>
+                  <div
+                    style={{ height: 200, width: 160, backgroundColor: "#CCC" }}
+                  ></div>
+                  <div>閒</div>
+                  <div
+                    style={{ height: 200, width: 160, backgroundColor: "#CCC" }}
+                  ></div>
+                </Stack>
               </Grid>
-              <Grid
-                item
-                xs={3}
-                style={{
-                  height: 250,
-                  backgroundColor: "#CCCCCC",
-                  margin: "20px",
-                }}
-              >
-                <Typography>(1:1)</Typography>
-                <Typography>和</Typography>
-              </Grid>
-              <Grid
-                item
-                xs={3}
-                style={{
-                  height: 250,
-                  backgroundColor: "#CCCCCC",
-                  margin: "20px",
-                }}
-              >
-                <Typography>(1:1)</Typography>
-                <Typography>閒</Typography>
+              <div style={{ display: "flex", flex: 1, alignItems: "center" }}>
+                <HiddenCard containerStyle={{ width: 100, height: 160 }} />
+              </div>
+              <Grid item xs={3} flex={2}>
+                <Typography>準備投注</Typography>
+                <Typography>10</Typography>
               </Grid>
             </Grid>
           </Grid>
           <Grid item xs={12}>
-            <Stack direction="row" spacing={2}>
-              <Button
-                variant="contained"
-                color="success"
-                style={{
-                  color: "#FFFFFF",
-                  width: 60,
-                  height: 60,
-                  borderRadius: 60,
-                }}
-              >
-                25
-              </Button>
-              <Button
-                variant="contained"
-                color="warning"
-                style={{
-                  color: "#FFFFFF",
-                  width: 60,
-                  height: 60,
-                  borderRadius: 60,
-                }}
-              >
-                50
-              </Button>
-              <Button
-                variant="contained"
-                color="error"
-                style={{
-                  color: "#FFFFFF",
-                  width: 60,
-                  height: 60,
-                  borderRadius: 60,
-                }}
-              >
-                100
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                style={{
-                  color: "#FFFFFF",
-                  width: 60,
-                  height: 60,
-                  borderRadius: 60,
-                }}
-              >
-                500
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                style={{
-                  color: "#FFFFFF",
-                  width: 60,
-                  height: 60,
-                  borderRadius: 60,
-                }}
-              >
-                1000
-              </Button>
-              <Button
-                variant="contained"
-                color="info"
-                style={{
-                  color: "#FFFFFF",
-                  width: 60,
-                  height: 60,
-                  borderRadius: 60,
-                }}
-              >
-                5000
-              </Button>
+            <BettingArea items={[{odd: "1:0.95", text: "莊"}, {odd: "1:1", text: "和"}, {odd: "1:1", text: "閒"}]}/>
+          </Grid>
+          <Grid item xs={12}>
+            <Stack direction="row" spacing={2} justifyContent="center">
+              <Chip value={25} />
+              <Chip value={50} />
+              <Chip value={100} />
+              <Chip value={500} />
+              <Chip value={1000} />
+              <Chip value={5000} />
             </Stack>
           </Grid>
         </Grid>
