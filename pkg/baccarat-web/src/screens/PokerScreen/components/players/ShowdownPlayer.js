@@ -5,7 +5,7 @@ import Card from '../cards/Card';
 const renderCards = (cards) => {
   return cards.map((card, index) => {
     const cardData = {...card, animationDelay: 0}
-    return <Card key={index} cardData={cardData} />
+    return <Card key={`card-${index}`} cardData={cardData} />
   })
 }
 const ShowdownPlayer = (props) => {

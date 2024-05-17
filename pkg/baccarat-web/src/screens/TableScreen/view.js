@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import useCountDown from 'react-countdown-hook';
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
@@ -19,15 +19,29 @@ const interval = 1000; // interval to change remaining time amount, defaults to 
 const styles = {
   avatarStyle: { bgcolor: deepOrange[500] },
 };
+
 const TableScreen = () => {
+  const [step, setStep] = useState("Ready");
   const [timeLeft, { start, pause, resume, reset }] = useCountDown(initialTime, interval);
 
-  // start the timer during the first render
   useEffect(() => {
     start();
     return reset;
   }, []);
 
+  useEffect(() => {
+    if (timeLeft === 0) {
+      if (step === "Ready") {
+        setStep("Betting");
+        start(initialTime);
+      }
+
+      if (step === "Betting") {
+        setStep("StopBetting");
+      }
+      
+    }
+  },  [timeLeft, step, setStep]);
   return (
     <Grid container>
       <Grid item xs={2}>
@@ -59,7 +73,7 @@ const TableScreen = () => {
       <Grid xs={10} item>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <ResultArea timeLeft={timeLeft} />
+            <ResultArea timeLeft={timeLeft} step={step} />
           </Grid>
           <Grid item xs={12}>
             <BettingArea items={[{odd: "1:0.95", text: "莊"}, {odd: "1:1", text: "和"}, {odd: "1:1", text: "閒"}]}/>

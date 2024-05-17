@@ -5,6 +5,7 @@ import {
 
 const Card = (props) => {
   const { 
+    containerStyle = {},
     cardData: {
       suit,
       cardFace,
@@ -16,7 +17,7 @@ const Card = (props) => {
     <div 
       key={`${suit} ${cardFace}`} 
       className={`playing-card cardIn ${(applyFoldedClassname ? ' folded' : '')}`} 
-      style={{animationDelay: `${(applyFoldedClassname) ?  0 : animationDelay}ms`}}>
+      style={{animationDelay: `${(applyFoldedClassname) ?  0 : animationDelay}ms`, ...containerStyle}}>
       <h6
         style={{color: `${(suit === 'Diamond' || suit === 'Heart') ? 'red' : 'black'}`}}>
         {`${cardFace} ${renderUnicodeSuitSymbol(suit)}`}

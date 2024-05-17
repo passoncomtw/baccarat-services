@@ -50,13 +50,13 @@ const Player = (props) => {
       return cards.map((card, index)=> {
         if (phase !== 'showdown') {
           return(
-            <HiddenCard key={index} cardData={card} applyFoldedClassname={applyFoldedClassname}/>
+            <HiddenCard key={`card-${index}`} cardData={card} applyFoldedClassname={applyFoldedClassname}/>
           );
         } else {
           // Reset Animation Delay
           const cardData = {...card, animationDelay: 0}
           return(
-            <Card key={index} cardData={cardData} applyFoldedClassname={applyFoldedClassname}/>
+            <Card key={`card-${index}`} cardData={cardData} applyFoldedClassname={applyFoldedClassname}/>
           );
         }
       });
@@ -64,7 +64,7 @@ const Player = (props) => {
     else {
       return cards.map((card, index) => {
         return(
-          <Card key={index} cardData={card} applyFoldedClassname={applyFoldedClassname}/>
+          <Card key={`card-${index}`} cardData={card} applyFoldedClassname={applyFoldedClassname}/>
         );
       });
     }
