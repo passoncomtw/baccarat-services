@@ -45,6 +45,12 @@ source ~/.zshrc
 3. https://docs.github.com/zh/actions/learn-github-actions/understanding-github-actions 這邊討論基本組成 of github action
 4. https://github.com/actions/starter-workflows/blob/main/deployments/azure-webapps-java-jar-gradle.yml 官網示範部署
 
+## Socketcluster go client 
+
+```
+$ go get github.com/sacOO7/socketcluster-client-go/scclient@v1.0.1-0.20230922063628-e06423a4ac46
+```
+
 # 參考資料
 
 [go-gin-example](https://github.com/eddycjy/go-gin-example)
@@ -64,3 +70,5 @@ source ~/.zshrc
 [Atlas Integration](https://atlasgo.io/)
 
 [Atlas Versioned Migrations](https://atlasgo.io/concepts/declarative-vs-versioned#versioned-migrations)
+
+[Fix socketcluster-client-go panic: interface conversion: interface {} is nil, not map[string]interface {}](https://github.com/sacOO7/socketcluster-client-go/issues/14)
