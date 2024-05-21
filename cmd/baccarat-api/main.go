@@ -79,7 +79,8 @@ func init() {
 // @externalDocs.url          https://swagger.io/resources/open-api/
 
 func main() {
-	client := scclient.New("ws://127.0.0.1:8223/socketcluster/")
+	url := viper.GetString(`sccserver.url`)
+	client := scclient.New(url)
 	client.SetBasicListener(onConnect, onConnectError, onDisconnect)
 	client.SetAuthenticationListener(onSetAuthentication, onAuthentication)
 	go client.Connect()
