@@ -7,7 +7,7 @@ on:
   # specifically when changes occur within pkg/baccarat-managment-center directory.
   push:
     branches:
-      - develop
+      - main
     # paths:
     #   - "pkg/baccarat-managment-center/**"
   # Triggered when a new GitHub Release is created and published.

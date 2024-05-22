@@ -2,8 +2,11 @@ name: Deploy
 on:
   # Triggered on every successful Build action
   workflow_run:
-    workflows: ["Release"]
-    branches: [main, master]
+    workflows: 
+    - Release
+    branches: 
+    - main
+    - master
     types:
       - completed
 
