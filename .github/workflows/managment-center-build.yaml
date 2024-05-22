@@ -41,11 +41,8 @@ jobs:
       # TAG_NAME defaults to 'latest' if not a release or manual deployment
       - name: Assign version
         run: |
-          echo "github.actor: ${{ github.actor }}"
           docker build . -t passon/baccarat-managment-server --progress=plain -f ./pkg/baccarat-managment-center/Dockerfile
-          echo "docker login"
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin ${{ secrets.DOCKERHUB_PASSWORD }}
           docker push passon/baccarat-managment-server
-          echo "docker logout"
           docker logout
           
