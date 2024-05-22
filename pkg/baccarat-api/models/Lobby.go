@@ -14,7 +14,7 @@ type CreateLobbyRequestDto struct {
 	name string
 }
 
-func createLobby(values *CreateLobbyRequestDto) Lobby {
+func CreateLobby(values *CreateLobbyRequestDto) Lobby {
 	var lobby Lobby
 	lobby.Name = values.name
 	DBConnection.Create(&lobby)

@@ -19,9 +19,22 @@ SCC_STATE_LOG_LEVEL=1 node server.js
 Replace `x.x.x` with the version number.
 
 ```
-docker build -t socketcluster/scc-state:vx.x.x .
+$ docker build -t socketcluster/scc-state:vx.x.x .
 ```
 
 ```
-docker push socketcluster/scc-state:vx.x.x
+$ docker push socketcluster/scc-state:vx.x.x
+```
+
+```
+$ docker build . -t passon/baccarat-managment-center --progress=plain -f ./Dockerfile
+$ docker run -p 7788:7788 --name baccarat-managment-center -d passon/baccarat-managment-center
+```
+
+### Run Docker State Service
+
+```
+$ cd pkg/baccarat-managment-center/
+$ docker-compose up -d
+$ cd -
 ```

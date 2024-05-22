@@ -8,6 +8,9 @@ services:
     image: passon/baccarat-managment-center
     stdin_open: true
     tty: true
-    working_dir: /source
+    working_dir: /usr/src/
+    ports:
+      - 7788:7788
     volumes:
-      - .:/source
+      - .:/usr/src/
+      - /usr/src/node_modules

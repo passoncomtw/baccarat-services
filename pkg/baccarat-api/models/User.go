@@ -75,6 +75,13 @@ func GetUserById(id string) *User {
 	return u
 }
 
+func GetUserFirst() *User {
+	var u *User
+	DBConnection.Select([]string{"id", "name", "account", "password"}).First(&u)
+
+	return u
+}
+
 func DeleteUserById(id string) {
 	var userResult *User
 	DBConnection.Select([]string{"id"}).First(&userResult, "id = ?", id)

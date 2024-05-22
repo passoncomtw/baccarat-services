@@ -23,3 +23,7 @@ buck-out/
 
 .env
 .env.local
+
+# Build Result
+build/*
+!build/README.md
