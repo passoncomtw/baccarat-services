@@ -41,6 +41,7 @@ jobs:
       # TAG_NAME defaults to 'latest' if not a release or manual deployment
       - name: Assign version
         run: |
+          echo github.actor: ${{ github.actor }}
           echo "TAG_NAME=latest" >> $GITHUB_ENV
           if [ "${{ github.event.release.tag_name }}" != "" ]; then
             echo "TAG_NAME=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
@@ -64,4 +65,5 @@ jobs:
           context: .
           file: ./pkg/baccarat-managment-center/Dockerfile
           push: true
-          tags: ghcr.io/passon/${{ env.image_repository_name }}:${{ env.TAG_NAME }}
+          tags: ghcr.io/passon/baccarat-managment-center:latest
+          # tags: ghcr.io/passon/${{ env.image_repository_name }}:${{ env.TAG_NAME }}
