@@ -12,7 +12,7 @@ on:
       - ".github/workflows/build-backend-prod.yml"
 
 jobs:
-  managment-center-build:
+  managment-center-build-docker:
     if: github.event.pull_request.merged == true
     runs-on: self-hosted
     steps:
