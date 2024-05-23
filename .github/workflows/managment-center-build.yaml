@@ -14,7 +14,7 @@ on:
 jobs:
   managment-center-build-docker:
     if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
+    runs-on: macOS
     steps:
       # Checkout latest or specific tag
       - name: checkout
