@@ -1,28 +1,19 @@
 name: managment-center-build
-permissions:
-  packages: write
-  contents: write
+
 on:
-  # Triggered when code is pushed to the repository,
-  # specifically when changes occur within pkg/baccarat-managment-center directory.
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
       - main
-    # paths:
-    #   - "pkg/baccarat-managment-center/**"
-  # Triggered when a new GitHub Release is created and published.
-  release:
-    types: [published]
-  # Manual trigger for rollback to specific release or redeploy latest
-  workflow_dispatch:
-    inputs:
-      version:
-        default: latest
-        description: Tag you want to release.
-        required: true
+    paths:
+      - "deploy/todo-demo-api/*"
+      - "packages/todo-demo-api/**"
+      - ".github/workflows/build-backend-prod.yml"
 
 jobs:
   managment-center-build:
+    if: github.event.pull_request.merged == true
     runs-on: self-hosted
     steps:
       # Checkout latest or specific tag
@@ -43,4 +34,3 @@ jobs:
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin ${{ secrets.DOCKERHUB_PASSWORD }}
           docker push passon/baccarat-managment-server
           docker logout
-          
