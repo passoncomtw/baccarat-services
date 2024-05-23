@@ -12,7 +12,7 @@ on:
 
 jobs:
   deploy_via_ssh:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     if: ${{ github.event.workflow_run.conclusion != 'failure' }}
     steps:
       # Checkout latest or specific tag
