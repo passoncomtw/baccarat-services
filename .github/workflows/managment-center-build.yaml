@@ -29,6 +29,6 @@ jobs:
       - name: Assign version
         run: |
           docker build . -t passon/baccarat-managment-server --progress=plain -f ./pkg/baccarat-managment-center/Dockerfile
-          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin ${{ secrets.DOCKERHUB_PASSWORD }}
+          echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin ${{ secrets.DOCKERHUB_PASSWORD }}
           docker push passon/baccarat-managment-server
           docker logout
