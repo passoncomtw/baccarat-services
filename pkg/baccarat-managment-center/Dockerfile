@@ -7,6 +7,5 @@ COPY . /usr/src/
 RUN npm install .
 
 EXPOSE 7788
-RUN ls /usr/src/
 
 CMD ["node", "server.js"]
