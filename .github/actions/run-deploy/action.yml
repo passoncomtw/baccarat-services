@@ -6,14 +6,8 @@ inputs:
   env:
     description: 'environment'
     required: true
-  pm2-config:
-    description: 'pm2 start config'
-    required: true
   folder-name:
     description: 'Project folder name'
-    required: true
-  db-config:
-    description: 'db config json string'
     required: true
   env-value:
     description: 'env file value'
@@ -27,7 +21,6 @@ inputs:
   branch-name:
     description: 'The branch you want to checkout with'
     required: true
-
 runs:
   using: "composite"
   steps:

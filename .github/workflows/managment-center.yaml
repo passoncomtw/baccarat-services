@@ -7,9 +7,8 @@ on:
     branches:
       - main
     paths:
-      - "deploy/todo-demo-api/*"
-      - "packages/todo-demo-api/**"
-      - ".github/workflows/managment-center-build.yaml"
+      - "pkg/baccarat-managment-center/**"
+      - ".github/workflows/managment-center.yaml"
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: baccarat-managment-center
