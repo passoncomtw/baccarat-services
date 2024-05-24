@@ -1,4 +1,4 @@
-name: managment-center-build
+name: managment-server-build
 
 on:
   pull_request:
@@ -7,14 +7,14 @@ on:
     branches:
       - main
     paths:
-      - "pkg/baccarat-managment-center/**"
-      - ".github/workflows/managment-center.yaml"
+      - "pkg/baccarat-server/**"
+      - ".github/workflows/managment-server.yaml"
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: baccarat-managment-center
+  IMAGE_NAME: baccarat-managment-server
 
 jobs:
-  managment-center-build-docker:
+  managment-server-build-docker:
     if: github.event.pull_request.merged == true
     runs-on: self-hosted
     # runs-on: self-hosted
@@ -39,7 +39,7 @@ jobs:
           push: true
           tags: passon/${{ env.IMAGE_NAME }}:latest
   do-deployment:
-    needs: managment-center-build-docker
+    needs: managment-server-build-docker
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
@@ -53,12 +53,12 @@ jobs:
         port: 22
         key: ${{ secrets.SSH_KEY_DEV_VALUE }}
         source: "./pkg/${{ env.IMAGE_NAME }}/docker-compose.yaml"
-        target: "~/baccarat/managment-center/"
+        target: "~/baccarat/managment-server/"
     - name: Deploy newest code to production machine
       uses: ./.github/actions/run-deploy
       with:
         env: prod
-        folder-name: baccarat/managment-center
+        folder-name: baccarat/managment-server
         branch-name: main
         env-value: ${{ secrets.MANAGMENT_CENTER_ENV }}
         host-name: ${{ secrets.DEV_HOST }}

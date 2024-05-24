@@ -6,6 +6,6 @@ COPY . /usr/src/
 
 RUN npm install .
 
-EXPOSE 8223
+EXPOSE 7100
 
-CMD ["npm", "run", "start:docker"]
+CMD ["node", "server.js"]
