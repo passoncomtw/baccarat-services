@@ -14,7 +14,7 @@ on:
 jobs:
   managment-center-build-docker:
     if: github.event.pull_request.merged == true
-    runs-on: ubuntu-lastest
+    runs-on: self-hosted
     # runs-on: self-hosted
     steps:
       # Checkout latest or specific tag
