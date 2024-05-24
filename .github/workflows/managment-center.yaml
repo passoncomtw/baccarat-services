@@ -9,6 +9,7 @@ on:
     paths:
       - "pkg/baccarat-managment-center/**"
       - ".github/workflows/managment-center.yaml"
+      - ".github/actions/run-deploy/action.yml"
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: baccarat-managment-center
