@@ -7,7 +7,7 @@ on:
     branches:
       - main
     paths:
-      - "pkg/baccarat-server/**"
+      - "pkg/baccarat-managment-server/**"
       - ".github/workflows/managment-server.yaml"
 env:
   REGISTRY: ghcr.io

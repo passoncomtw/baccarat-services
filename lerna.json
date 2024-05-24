@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "packages": [
     "pkg/baccarat-managment-center",
-    "pkg/baccarat-server",
+    "pkg/baccarat-managment-server",
     "pkg/baccarat-web"
   ]
 }
