@@ -17,8 +17,7 @@ env:
 jobs:
   managment-center-build-docker:
     if: github.event.pull_request.merged == true
-    runs-on: self-hosted
-    # runs-on: self-hosted
+    runs-on: mac-mini-build
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -42,7 +41,7 @@ jobs:
   do-deployment:
     needs: managment-center-build-docker
     if: github.event.pull_request.merged == true
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     # Copy docker-compose and .env files to target server
