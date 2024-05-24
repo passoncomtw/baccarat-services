@@ -6,10 +6,10 @@ on:
       - closed
     branches:
       - main
-    # paths:
-    #   - "deploy/todo-demo-api/*"
-    #   - "packages/todo-demo-api/**"
-    #   - ".github/workflows/build-backend-prod.yml"
+    paths:
+      - "deploy/todo-demo-api/*"
+      - "packages/todo-demo-api/**"
+      - ".github/workflows/managment-center-build.yaml"
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: baccarat-managment-center
@@ -31,12 +31,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      # - name: Extract metadata (tags, labels) for Docker
-      #   id: meta
-      #   uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-      #   with:
-      #     images: my-docker-hub-namespace/my-docker-hub-repository
-
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
@@ -44,33 +38,19 @@ jobs:
           context: .
           file: ./pkg/${{ env.IMAGE_NAME }}/Dockerfile
           push: true
-          tags: passon/${{ env.IMAGE_NAME }}:lastest
-          # tags: ${{ steps.meta.outputs.tags }}
-          # labels: ${{ steps.meta.outputs.labels }}
-      
-      
-      - name: Generate artifact attestation
-        uses: actions/attest-build-provenance@v1
-        with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
-          subject-digest: ${{ steps.push.outputs.digest }}
-          push-to-registry: true
-      # Checkout latest or specific tag
-      # - name: checkout
-      #   uses: actions/checkout@v3
-      # - name: checkout tag
-      #   uses: actions/checkout@v3
-
-      # # Assign environment variables used in subsequent steps
-      # - name: Env variable assignment
-      #   run: echo "image_repository_name=$(echo $GITHUB_WORKFLOW | sed 's/-build$//')" >>${GITHUB_ENV}
-      # # TAG_NAME defaults to 'latest' if not a release or manual deployment
-      # - name: Assign version
-      #   run: |
-      #     whoami
-      #     security unlock-keychain -p ${{ secrets.MAC_USER_PASSWORD }} /Users/admin/Library/Keychains/login.keychain-db
-      #     docker build . -t passon/baccarat-managment-center --progress=plain -f ./pkg/baccarat-managment-center/Dockerfile
-      #     echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin ${{ secrets.DOCKERHUB_PASSWORD }}
-      #     docker push passon/baccarat-managment-center
-      #     docker image rm passon/baccarat-managment-center
-      #     docker logout
+          tags: passon/${{ env.IMAGE_NAME }}:latest
+  do-deployment:
+    needs: managment-center-build-docker
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Deploy newest code to production machine
+      uses: ./.github/actions/run-deploy
+      with:
+        env: prod
+        folder-name: baccarat/managment-center
+        branch-name: main
+        env-value: ${{ secrets.MANAGMENT_CENTER_ENV }}
+        host-name: ${{ secrets.DEV_HOST }}
+        ssh-key: ${{ secrets.SSH_KEY_DEV_VALUE }}
