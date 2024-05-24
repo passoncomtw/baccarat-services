@@ -9,4 +9,4 @@ RUN npm install .
 EXPOSE 7788
 RUN ls /usr/src/
 
-CMD ["npm", "server.js"]
+CMD ["node", "server.js"]
