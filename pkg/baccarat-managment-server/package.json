@@ -1,5 +1,5 @@
 {
-  "name": "baccarat-server",
+  "name": "baccarat-managment-server",
   "description": "Baccarat Server SocketCluster app",
   "version": "1.0.1",
   "type": "module",

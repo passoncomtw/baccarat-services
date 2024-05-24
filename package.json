@@ -4,14 +4,14 @@
   "version": "0.1.0",
   "workspaces": [
     "pkg/baccarat-managment-center",
-    "pkg/baccarat-server",
+    "pkg/baccarat-managment-server",
     "pkg/baccarat-web"
   ],
   "scripts": {
     "start:baccarat-api": "go run ./cmd/baccarat-api/main.go",
     "start:baccarat-game-service": "go run ./cmd/baccarat-game-service/main.go",
     "start:scc-state": "lerna run start --stream --scope=baccarat-managment-center",
-    "start:baccarat-server": "lerna run start --stream --scope=baccarat-server",
+    "start:baccarat-managment-server": "lerna run start --stream --scope=baccarat-managment-server",
     "start:baccarat-web": "lerna run start --stream --scope=baccarat-web",
     "build:baccarat-api": "cd ./cmd/baccarat-api/ && CGO_ENABLED=3 GOOS=linux go build -o ../../build/baccarat-api && cd ../..",
     "build:baccarat-game-service": "cd ./cmd/baccarat-game-service/ && CGO_ENABLED=3 GOOS=linux go build -o ../../build/baccarat-game-service && cd ../..",
