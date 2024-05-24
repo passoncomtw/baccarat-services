@@ -17,7 +17,7 @@ env:
 jobs:
   managment-server-build-docker:
     if: github.event.pull_request.merged == true
-    runs-on: self-hosted
+    runs-on: mac-mini-build
     # runs-on: self-hosted
     steps:
       - name: Check out the repo
