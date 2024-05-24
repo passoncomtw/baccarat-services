@@ -29,7 +29,9 @@ jobs:
       # TAG_NAME defaults to 'latest' if not a release or manual deployment
       - name: Assign version
         run: |
-          docker build . -t passon/baccarat-managment-server --progress=plain -f ./pkg/baccarat-managment-center/Dockerfile
+          whoami
+          docker build . -t passon/baccarat-managment-center --progress=plain -f ./pkg/baccarat-managment-center/Dockerfile
           echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin ${{ secrets.DOCKERHUB_PASSWORD }}
-          docker push passon/baccarat-managment-server
+          docker push passon/baccarat-managment-center
+          docker image rm passon/baccarat-managment-center
           docker logout
