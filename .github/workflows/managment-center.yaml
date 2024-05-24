@@ -42,7 +42,7 @@ jobs:
   do-deployment:
     needs: managment-center-build-docker
     if: github.event.pull_request.merged == true
-    runs-on: mac-mini-build
+    runs-on: ubuntu-lastest
     steps:
     - uses: actions/checkout@v3
     # Copy docker-compose and .env files to target server
