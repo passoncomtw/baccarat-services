@@ -30,6 +30,7 @@ runs:
           cd ./${{ inputs.folder-name }}
           mv pkg/${{ inputs.module-name }}/docker-compose.yaml .
           rm -rf ./pkg
+          docker pull passon/${{ inputs.module-name }}
           docker-compose down || echo "stop docker compose service"
           docker-compose up -d
         host: ${{ inputs.host-name }}
