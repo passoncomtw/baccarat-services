@@ -11,6 +11,6 @@ services:
     working_dir: /usr/src/
     ports:
       - 7000:7000
-    volumes:
-      - .:/usr/src/
-      - /usr/src/node_modules
+    # volumes:
+    #   - .:/usr/src/
+    #   - /usr/src/node_modules
