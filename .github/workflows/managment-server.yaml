@@ -57,9 +57,8 @@ jobs:
     - name: Deploy newest code to production machine
       uses: ./.github/actions/run-deploy
       with:
-        env: prod
         folder-name: baccarat/managment-server
         branch-name: main
-        env-value: ${{ secrets.MANAGMENT_CENTER_ENV }}
+        module-name: baccarat-managment-server
         host-name: ${{ secrets.DEV_HOST }}
         ssh-key: ${{ secrets.SSH_KEY_DEV_VALUE }}

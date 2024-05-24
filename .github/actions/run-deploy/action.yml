@@ -3,14 +3,11 @@ name: "Deployment"
 description: "Deploy newest code to the machine."
 
 inputs:
-  env:
-    description: 'environment'
-    required: true
   folder-name:
     description: 'Project folder name'
     required: true
-  env-value:
-    description: 'env file value'
+  module-name:
+    description: '模組名稱'
     required: true
   ssh-key:
     description: 'Ssh key for login the target machine'
@@ -31,7 +28,7 @@ runs:
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
           cd ./${{ inputs.folder-name }}
-          mv pkg/baccarat-managment-center/docker-compose.yaml .
+          mv pkg/${{ inputs.module-name }}/docker-compose.yaml .
           rm -rf ./pkg
           docker-compose down || echo "stop docker compose service"
           docker-compose up -d
