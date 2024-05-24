@@ -38,10 +38,8 @@ runs:
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
           cd ./${{ inputs.folder-name }}
-          git fetch
-          git reset --hard
-          git checkout origin/${{ inputs.branch-name }}
-          cd pkg/baccarat-managment-center
+          mv pkg/baccarat-managment-center/docker-compose.yaml .
+          rm -rf ./pkg
           docker-compose down || echo "stop docker compose service"
           docker-compose up -d
         host: ${{ inputs.host-name }}
