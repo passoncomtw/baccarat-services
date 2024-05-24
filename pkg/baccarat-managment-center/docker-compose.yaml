@@ -4,13 +4,13 @@ version: "3.8"
 # 定義 service 的區塊，一個 service 設定可以用來啟動多個 container
 services:
   # 定義一個叫 npm 的 service
-  socker-cluster-state:
+  baccarat-managment-state:
     image: passon/baccarat-managment-center
     stdin_open: true
     tty: true
     working_dir: /usr/src/
     ports:
-      - 7788:7788
+      - 7000:7000
     volumes:
       - .:/usr/src/
       - /usr/src/node_modules
