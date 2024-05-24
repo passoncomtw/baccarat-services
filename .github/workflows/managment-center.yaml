@@ -52,7 +52,7 @@ jobs:
         username: root
         port: 22
         key: ${{ secrets.SSH_KEY_DEV_VALUE }}
-        source: "./pkg/baccarat-managment-center/docker-compose.yaml"
+        source: "./pkg/baccarat-managment-center/*,!node_modules"
         target: "~/baccarat/managment-center/"
     - name: Deploy newest code to production machine
       uses: ./.github/actions/run-deploy
