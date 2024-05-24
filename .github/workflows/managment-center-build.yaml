@@ -49,7 +49,7 @@ jobs:
       uses: ./.github/actions/run-deploy
       with:
         env: prod
-        folder-name: baccarat-managment-center
+        folder-name: baccarat/managment-center
         branch-name: main
         env-value: ${{ secrets.MANAGMENT_CENTER_ENV }}
         host-name: ${{ secrets.DEV_HOST }}
