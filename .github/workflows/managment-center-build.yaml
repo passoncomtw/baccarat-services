@@ -30,7 +30,7 @@ jobs:
       - name: Assign version
         run: |
           whoami
-          security unlock-keychain -p ${{ secrets.MAC_USER_PASSWORD }} /Users/jenkins/Library/Keychains/login.keychain-db
+          security unlock-keychain -p ${{ secrets.MAC_USER_PASSWORD }} /Users/admin/Library/Keychains/login.keychain-db
           docker build . -t passon/baccarat-managment-center --progress=plain -f ./pkg/baccarat-managment-center/Dockerfile
           echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin ${{ secrets.DOCKERHUB_PASSWORD }}
           docker push passon/baccarat-managment-center
