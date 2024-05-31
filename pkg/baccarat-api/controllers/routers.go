@@ -14,6 +14,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/gin-contrib/cors"
 )
 
 // gin-swagger middleware
@@ -108,6 +109,8 @@ func InitRouter() *gin.Engine {
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
 
 	router := gin.New()
+
+	router.Use(cors.Default())
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 

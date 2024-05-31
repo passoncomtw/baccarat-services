@@ -4,7 +4,7 @@ var AppJsonConfig = []byte(`
 {
   "swagger": {
     "basePath": "/",
-    "host": "localhost:3000",
+    "host": "127.0.0.1:3000",
     "version": "0.9.0",
     "title": "百家樂 API",
     "description": "百家樂 API"
