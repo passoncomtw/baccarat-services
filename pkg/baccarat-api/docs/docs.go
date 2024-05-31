@@ -40,8 +40,7 @@ const docTemplate = `{
                 "summary": "User",
                 "parameters": [
                     {
-                        "type": "integer",
-                        "format": "int64",
+                        "type": "string",
                         "description": "User ID",
                         "name": "id",
                         "in": "path",
@@ -352,9 +351,13 @@ const docTemplate = `{
         },
         "apiv1.UpdateUserRequestDto": {
             "type": "object",
+            "required": [
+                "name"
+            ],
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "test001"
                 }
             }
         },
@@ -431,7 +434,8 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "test001"
                 },
                 "password": {
                     "type": "string",

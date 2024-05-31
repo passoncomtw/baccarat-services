@@ -43,7 +43,10 @@ definitions:
   apiv1.UpdateUserRequestDto:
     properties:
       name:
+        example: test001
         type: string
+    required:
+    - name
     type: object
   apiv1.UserResponseDto:
     properties:
@@ -91,6 +94,7 @@ definitions:
       amount:
         type: integer
       name:
+        example: test001
         type: string
       password:
         example: a12345678
@@ -141,11 +145,10 @@ paths:
       description: get an user account
       parameters:
       - description: User ID
-        format: int64
         in: path
         name: id
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses:
