@@ -8,7 +8,7 @@ import (
 type BaseUserDto struct {
 	Account  string `json:"account" binding:"required" validate:"required" example:"test001" gorm:"type:varchar(40);uniqueIndex"`
 	Password string `json:"password" binding:"required" validate:"required" example:"a12345678" gorm:"type:varchar(255);"`
-	Name     string `json:"name" binding:"required" validate:"required" examle:"test001" gorm:"type:varchar(40);"`
+	Name     string `json:"name" binding:"required" validate:"required" example:"test001" gorm:"type:varchar(40);"`
 	Amount   int    `json:"amount" validate:"required" example:0 gorm:"default:0"`
 }
 

@@ -13,7 +13,7 @@ type UserResponseDto struct {
 }
 
 type UpdateUserRequestDto struct {
-	Name string `json:"name"`
+	Name string `json:"name" validate:"required" example:"test001" gorm:"type:varchar(40);"`
 }
 
 // registe User
@@ -68,7 +68,7 @@ func RegisteUser(context *gin.Context) {
 // @Description get an user account
 // @Security BearerAuth
 //
-//	@Param			id	path		int	true	"User ID"	Format(int64)
+//	@Param			id	path		string	true	"User ID"
 //
 // @Tags User
 // @Accept json

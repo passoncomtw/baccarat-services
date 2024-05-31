@@ -6,6 +6,6 @@ COPY . /usr/src/
 
 RUN npm install .
 
-EXPOSE 7788
+EXPOSE 3000
 
 CMD ["node", "server.js"]

@@ -2,8 +2,8 @@ FROM golang:1.21
 
 WORKDIR /app
 
-COPY ./baccaratapi /baccaratapi
+COPY ./baccaratapi /app/baccaratapi
 
-EXPOSE 8332
+EXPOSE 3000
 
 CMD ["/baccaratapi"]

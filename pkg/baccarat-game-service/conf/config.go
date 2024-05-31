@@ -16,7 +16,7 @@ var AppJsonConfig = []byte(`
     "debug_mod": "true"
   },
   "database": {
-    "dsn": "user=postgres password=1234 dbname=baccarat host=localhost port=5432 sslmode=disable"
+    "dsn": "user=postgres password=1234 dbname=baccarat host=127.0.0.1 port=5432 sslmode=disable"
   },
   "sccserver": {
     "url": "ws://127.0.0.1:8223/socketcluster/"
