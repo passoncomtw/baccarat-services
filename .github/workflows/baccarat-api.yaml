@@ -19,6 +19,14 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
+      - name: Cache build result
+        uses: actions/cache@v3
+        id: build-cache
+        with:
+          path: ./pkg/baccarat-api/build
+          key: ${{ runner.os }}-baccarat-api-build-result
+          restore-keys: |
+            ${{ runner.os }}-baccarat-api-build-result
       - name: unlock-keychain-db
         run: |
           security unlock-keychain -p ${{ secrets.MAC_USER_PASSWORD }} /Users/admin/Library/Keychains/login.keychain-db
@@ -47,22 +55,22 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    # Copy docker-compose and .env files to target server
-    - name: copy files to target server via scp
-      uses: appleboy/scp-action@v0.1.3
-      with:
-        host: ${{ secrets.DEV_HOST }}
-        username: root
-        port: 22
-        key: ${{ secrets.SSH_KEY_DEV_VALUE }}
-        source: "./pkg/${{ env.IMAGE_NAME }}/docker-compose.yaml"
-        target: "~/baccarat/baccarat-api/"
-    - name: Deploy newest code to production machine
-      uses: ./.github/actions/run-deploy
-      with:
-        folder-name: baccarat/baccarat-api
-        branch-name: main
-        module-name: baccarat-api
-        host-name: ${{ secrets.DEV_HOST }}
-        ssh-key: ${{ secrets.SSH_KEY_DEV_VALUE }}
+      - uses: actions/checkout@v3
+      # Copy docker-compose and .env files to target server
+      - name: copy files to target server via scp
+        uses: appleboy/scp-action@v0.1.3
+        with:
+          host: ${{ secrets.DEV_HOST }}
+          username: root
+          port: 22
+          key: ${{ secrets.SSH_KEY_DEV_VALUE }}
+          source: "./pkg/${{ env.IMAGE_NAME }}/docker-compose.yaml"
+          target: "~/baccarat/baccarat-api/"
+      - name: Deploy newest code to production machine
+        uses: ./.github/actions/run-deploy
+        with:
+          folder-name: baccarat/baccarat-api
+          branch-name: main
+          module-name: baccarat-api
+          host-name: ${{ secrets.DEV_HOST }}
+          ssh-key: ${{ secrets.SSH_KEY_DEV_VALUE }}
