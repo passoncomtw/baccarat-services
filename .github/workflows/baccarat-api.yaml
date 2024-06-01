@@ -23,7 +23,7 @@ jobs:
         uses: actions/cache@v3
         id: build-cache
         with:
-          path: ./pkg/baccarat-api/build
+          path: ./build
           key: ${{ runner.os }}-baccarat-api-build-result
           restore-keys: |
             ${{ runner.os }}-baccarat-api-build-result
