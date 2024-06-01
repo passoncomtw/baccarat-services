@@ -2,7 +2,7 @@ FROM golang:1.21
 
 WORKDIR /app
 
-COPY ../../build/baccaratapi /app/baccaratapi
+COPY ./build/baccaratapi /app/baccaratapi
 
 EXPOSE 3000
 
