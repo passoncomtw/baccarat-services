@@ -22,7 +22,7 @@ jobs:
       - name: unlock-keychain-db
         run: |
           security unlock-keychain -p ${{ secrets.MAC_USER_PASSWORD }} /Users/admin/Library/Keychains/login.keychain-db
-          echo "${{ secrets.API_GOLANG_CONFIG }}" > ./pkg/baccarat-api/conf/config.go
+          echo '${{ secrets.API_GOLANG_CONFIG }}' > ./pkg/baccarat-api/conf/config.go
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
           nvm use 18
