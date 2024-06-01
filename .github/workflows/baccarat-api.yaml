@@ -37,6 +37,9 @@ jobs:
           key: ${{ runner.os }}-baccarat-api-build-result
           restore-keys: |
             ${{ runner.os }}-baccarat-api-build-result
+      - name: check files
+        run: |
+            ls -al
       - name: Log in to Docker Hub
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
@@ -51,6 +54,9 @@ jobs:
           file: ./pkg/${{ env.IMAGE_NAME }}/Dockerfile
           push: true
           tags: passon/${{ env.IMAGE_NAME }}:latest
+      - name: check files
+        run: |
+            ls -al
   do-deployment:
     needs: baccarat-api-build
     if: github.event.pull_request.merged == true
