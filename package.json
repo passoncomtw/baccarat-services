@@ -5,7 +5,9 @@
   "workspaces": [
     "pkg/baccarat-managment-center",
     "pkg/baccarat-managment-server",
-    "pkg/baccarat-web"
+    "pkg/baccarat-web",
+    "pkg/baccarat-api",
+    "pkg/baccarat-game-service"
   ],
   "scripts": {
     "start:baccarat-api": "go run ./pkg/baccarat-api/main.go",
@@ -13,7 +15,7 @@
     "start:scc-state": "lerna run start --stream --scope=baccarat-managment-center",
     "start:baccarat-managment-server": "lerna run start --stream --scope=baccarat-managment-server",
     "start:baccarat-web": "lerna run start --stream --scope=baccarat-web",
-    "build:baccarat-api": "cd ./cmd/baccarat-api/ && CGO_ENABLED=3 GOOS=linux go build -o ../../build/baccarat-api && cd ../..",
+    "build:baccarat-api": "cd ./pkg/baccarat-api/ && CGO_ENABLED=3 GOOS=linux go build -o ../../build/baccaratapi && cd ../..",
     "build:baccarat-game-service": "cd ./cmd/baccarat-game-service/ && CGO_ENABLED=3 GOOS=linux go build -o ../../build/baccarat-game-service && cd ../..",
     "build:baccarat-web": "lerna run build --stream --scope=baccarat-web",
     "build:doc:baccarat-api": "cd ./pkg/baccarat-api && swag init -g ./main.go -o ./docs && cd ../.."
