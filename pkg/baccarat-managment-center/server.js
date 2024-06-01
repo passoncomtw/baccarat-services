@@ -8,7 +8,7 @@ const eetase = require('eetase');
 const packageVersion = require(`./package.json`).version;
 const requiredMajorSemver = getMajorSemver(packageVersion);
 
-const DEFAULT_PORT = 7777;
+const DEFAULT_PORT = process.env.SCC_STATE_SERVER_PORT;
 const DEFAULT_CLUSTER_SCALE_OUT_DELAY = 5000;
 const DEFAULT_CLUSTER_SCALE_BACK_DELAY = 1000;
 const DEFAULT_CLUSTER_STARTUP_DELAY = 5000;
